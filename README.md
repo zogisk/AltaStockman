@@ -1,4 +1,5 @@
-# Proyecto3
+# Almacen Web | Alta Stockman
+En este proyecto se almacena el código fuente usado para la web de almacenamiento para la empresa Alta Stockman de Lázaro Cárdenas. Este proyecto no es oficial por lo cual no es funcional y se encuentra en proceso de desarrollo.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
 

@@ -59,7 +59,6 @@ import {MatTreeModule}              from '@angular/material/tree';
     MatFormFieldModule,
     MatCheckboxModule,
     MatPaginatorModule,
-    BrowserAnimationsModule,
     MatNativeDateModule,
   ],
   providers: [],
