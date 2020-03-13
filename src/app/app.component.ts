@@ -16,9 +16,6 @@ const NAMES: string[] = [
   'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
 ];
 
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
 @Component({
   selector: 'app-root',
   styleUrls: ['app.component.styl'],
@@ -31,7 +28,7 @@ export class AppComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     // Create 100 users
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
@@ -42,16 +39,26 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    //console.log("Data Source: ");
+    //    console.log(this.dataSource.filteredData);
   }
-  /*
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+/*
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    console.log(event);
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+      //this.dataSource.filteredData = filterValue.trim().toLowerCase();
+      console.log("Data Source: ");
+      console.log(this.dataSource);
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
   }*/
+
   selection = new SelectionModel<UserData>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -95,5 +102,5 @@ import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel, DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 
