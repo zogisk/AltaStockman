@@ -39,25 +39,11 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    //console.log("Data Source: ");
-    //    console.log(this.dataSource.filteredData);
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-/*
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log(event);
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-      //this.dataSource.filteredData = filterValue.trim().toLowerCase();
-      console.log("Data Source: ");
-      console.log(this.dataSource);
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
-      }
-  }*/
 
   selection = new SelectionModel<UserData>(true, []);
 
@@ -75,8 +61,8 @@ export class AppComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  /** The label for the checkbox on the passed row */
-  /*checkboxLabel(row?: ): string {
+  /** The label for the checkbox on the passed row
+  checkboxLabel(row?: MatTableDataSource<UserData>): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
@@ -102,5 +88,5 @@ import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel, DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import { HttpClient } from '@angular/common/http';
-
+import { HttpClient } from '@angular/common/http'; 
+import {MatSidenavModule} from '@angular/material/sidenav'; 

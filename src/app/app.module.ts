@@ -63,7 +63,9 @@ import {HttpClientModule} from '@angular/common/http';
     MatNativeDateModule,
     HttpClientModule,
     MatSortModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent],
