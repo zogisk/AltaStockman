@@ -16,19 +16,23 @@ const NAMES: string[] = [
   'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
 ];
 
+//declare var datos: any;
+
 @Component({
   selector: 'app-root',
   styleUrls: ['app.component.styl'],
   templateUrl: 'app.component.html',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
   displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+info:any={};
+ 
 
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
     // Create 100 users
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
@@ -36,15 +40,20 @@ export class AppComponent implements OnInit {
     this.dataSource = new MatTableDataSource(users);
   }
 
-  ngOnInit() {
+  ngOnInit(): void{
+    this.http.get('../assets/datajson/listaequipos.json').subscribe(info => {
+      console.log(this.info);
+      return info;
+    });
+    console.log(this.info);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+  //console.log(info);
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
   selection = new SelectionModel<UserData>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -88,5 +97,4 @@ import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel, DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import { HttpClient } from '@angular/common/http'; 
-import {MatSidenavModule} from '@angular/material/sidenav'; 
+import { HttpClient } from '@angular/common/http';
