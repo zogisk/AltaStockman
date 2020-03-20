@@ -2,6 +2,7 @@ import { BrowserModule }            from '@angular/platform-browser';
 import { NgModule }                 from '@angular/core';
 import { AppRoutingModule }         from './app-routing.module';
 import { AppComponent }             from './app.component';
+import { element }                  from './app.elementos'
 import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
 import { MatTableModule }           from '@angular/material/table'; 
 import { MatFormFieldModule }       from '@angular/material/form-field'; 
@@ -46,11 +47,12 @@ import {MatTabsModule}              from '@angular/material/tabs';
 import {MatToolbarModule}           from '@angular/material/toolbar';
 import {MatTooltipModule}           from '@angular/material/tooltip';
 import {MatTreeModule}              from '@angular/material/tree';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule}           from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    element
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,7 @@ import {HttpClientModule} from '@angular/common/http';
     MatSidenavModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent,element],
   exports: [
     A11yModule,
     ClipboardModule,

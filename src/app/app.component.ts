@@ -24,12 +24,13 @@ const NAMES: string[] = [
   templateUrl: 'app.component.html',
 })
 export class AppComponent implements OnInit{
+  //displayedColumns: string[] = ['ID', 'Nombre', 'Correo', 'IP'];
   displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-info:any={};
+  info:any={};
  
 
   constructor(public http: HttpClient) {
@@ -41,14 +42,19 @@ info:any={};
   }
 
   ngOnInit(): void{
-    this.http.get('../assets/datajson/listaequipos.json').subscribe(info => {
-      console.log(this.info);
+    this.http.get('../assets/datajson/listaequipos.json').subscribe(info=> {
+      this.info = info;
       return info;
     });
-    console.log(this.info);
+    //this.dataSource = this.info;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
+  clik() {
+    console.log(this.info);
+  }
+
   //console.log(info);
 
   applyFilter(filterValue: string) {
